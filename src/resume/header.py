@@ -23,7 +23,7 @@ class Header(ResumePart):
             if idx > 0 and self.new_line_idx and idx != self.new_line_idx:
                 content += " | "
 
-            content += f"""#raw("{subheader}")"""
+            content += subheader.replace("@", "\@")
 
         return f"""
         #set align(center)
