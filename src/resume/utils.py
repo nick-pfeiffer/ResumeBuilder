@@ -4,8 +4,9 @@ import re as regex
 def create_heading(header: str):
     return f"""
     #set align(left)
+    #v({const.SECTION_GAP})
     #text({const.HEADER})[{header}]
-    #block(spacing: 0.3cm)[
+    #block(spacing: 0.25cm)[
         #line(length: 100%, stroke: 1pt)
     ]
     """

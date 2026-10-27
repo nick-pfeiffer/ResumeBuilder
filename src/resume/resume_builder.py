@@ -80,7 +80,10 @@ class ResumeBuilder:
     def build_resume(self):
         typst_str = f"""
         #set page(margin: {self.margins}cm)
-        #set text(font: "Arial", size: {self.font_size}pt)
+        #set text(font: "Charter", size: {self.font_size}pt)
+        #set par(leading: 0.5em, spacing: 0.5em)
+        #set block(spacing: 0.5em)
+        #show link: underline.with(stroke: 0.5pt, offset: 1.5pt)
         """
         for resume_part in self.resume_parts:
             typst_str += resume_part.to_typst_str()

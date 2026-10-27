@@ -1,5 +1,6 @@
-NAME_SIZE = "size: 25pt"
+NAME_SIZE = "size: 22pt"
 CONTACT = "size: 10pt"
 HEADER = "size: 15pt"
-INLINE_HEADER = "size: 13pt"
+INLINE_HEADER = "size: 12pt"
 ENTRY_GAP = "0.4em"
+SECTION_GAP = "0.4em"

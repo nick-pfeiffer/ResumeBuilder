@@ -21,7 +21,7 @@ class Skills(ResumePart):
         section = f"""
         {utils.create_heading("Technical Skills")}
         #grid(
-            columns: (0.2fr, 9.6fr, 0.2fr),
+            columns: (0.1fr, 9.8fr, 0.1fr),
             text()[],
             [{skills_content}],
             text()[],
