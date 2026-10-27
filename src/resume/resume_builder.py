@@ -29,12 +29,21 @@ class ResumeBuilder:
                            "projects"]
         self.font_size = 11
         self.margins = 1 # cm
+        self.top_margin = self.margins
+        self.bottom_margin = self.margins
+        self.paper = "us-letter"
 
         if "settings" in self.config:
+            if "paper" in self.config["settings"]:
+                self.paper = self.config["settings"]["paper"]
             if "margins" in self.config["settings"]:
                 self.margins = self.config["settings"]["margins"]
+            self.top_margin = self.config["settings"].get("top_margin",
+                                                          self.margins)
+            self.bottom_margin = self.config["settings"].get("bottom_margin",
+                                                             self.margins)
             if "font_size" in self.config["settings"]:
-                self.font_size = int(self.config["settings"]["font_size"])
+                self.font_size = float(self.config["settings"]["font_size"])
             if "part_order" in self.config["settings"]:
                 self.part_order = self.config["settings"]["part_order"]
             if ("link" not in self.config["settings"] 
@@ -78,8 +87,13 @@ class ResumeBuilder:
                 self.resume_parts.append(resume_part)
 
     def build_resume(self):
-        typst_str = f"""
-        #set page(margin: {self.margins}cm)
+        typst_str = ""
+        if "header" in self.config:
+            name = self.config["header"]["name"]
+            typst_str += f"""
+        #set document(title: "{name} – Resume", author: "{name}")"""
+        typst_str += f"""
+        #set page(paper: "{self.paper}", margin:(rest: {self.margins}cm, top: {self.top_margin}cm, bottom: {self.bottom_margin}cm))
         #set text(font: "Charter", size: {self.font_size}pt)
         #set par(leading: 0.5em, spacing: 0.5em)
         #set block(spacing: 0.5em)
