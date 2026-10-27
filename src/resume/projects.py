@@ -11,20 +11,22 @@ class Projects(ResumePart):
         content = ""
         for project in self.entries:
             name = project["name"]
-            tools = project["tools"]
             time = project["time"]
             items = project["items"]
             link = "" if "link" not in project else f"""| {project["link"]}"""
+            tools = ("" if not project.get("tools")
+                     else f"""| {", ".join(project["tools"])}""")
 
+            if content:
+                content += f"#v({const.ENTRY_GAP})\n"
             content += f"""
             #grid(
-                columns: (6.5fr, 0.5fr, 3fr),
+                columns: (1fr, auto),
                 [
                      #text(weight: "bold")[{name}]
-                     #text()[ | {", ".join(tools)}]
+                     #text()[{tools}]
                      #text()[{link}]
                 ],
-                text()[],
                 [
                     #set align(right)
                     {time}
@@ -41,7 +43,7 @@ class Projects(ResumePart):
         section = f"""
         {utils.create_heading("Projects")}
         #grid(
-            columns: (0.2fr, 9.6fr, 0.2fr),
+            columns: (0.1fr, 9.8fr, 0.1fr),
             text()[],
             [
                 {content}
