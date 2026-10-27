@@ -14,28 +14,29 @@ needing to mess with LaTeX!
 git clone https://github.com/daviliuu/ResumeBuilder.git
 ```
 
-2. Download typst and rye for your operating system:
+2. Download typst and [uv](https://docs.astral.sh/uv/) for your operating system:
 
 #### Windows
 
 ```
 winget install --id Typst.Typst
-winget install --id=Rye.Rye  -e
+winget install --id=astral-sh.uv -e
 ```
 
 #### Mac 
 ```
-brew install typst rye
+brew install typst uv
 ```
 
 #### Ubuntu
 ```
-sudo apt install typst rye
+sudo apt install typst
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 #### Arch
 ```
-yay -S typst rye
+sudo pacman -S typst uv
 ```
 
 3. Modify the config.json file to fit your profile! You can add or remove the 
@@ -45,9 +46,9 @@ section in your resume. i.e. the name of the school, graduation date, and
 degree program are required fields if you choose to include an *Education* 
 section on your resume.
 
-4. Run the project via rye
+4. Run the project via uv
 ```
-rye run resume
+uv run resume
 ```
 
 5. Compile the typst code into a pdf file
