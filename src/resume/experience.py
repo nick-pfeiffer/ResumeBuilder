@@ -16,21 +16,28 @@ class Experience(ResumePart):
             time = experience["time"]
             status = experience["status"]
             items = experience["items"]
-            company_loc = f"{company}, {location}"
-
             assert len(titles) == len(time)
+            # With one title, the date sits on the company line and the
+            # location on the title line; with several, the location sits on
+            # the company line (blank if empty, to keep each date lined up
+            # with its title).
+            if len(titles) == 1:
+                right = [line for line in time + [location, status] if line]
+            else:
+                right = [location] + time + ([status] if status else [])
+            if content:
+                content += f"#v({const.ENTRY_GAP})\n"
             content += f"""
             #grid(
                 columns: (6fr, 1fr, 3fr),
                 [
-                    {"\\ \n".join(titles)} \\
-                     #text(weight: "bold")[{company_loc}]
+                    #text(weight: "bold")[{company}] \\
+                    {"\\ \n".join(f"#emph[{title}]" for title in titles)}
                 ],
                 text()[],
                 [
                     #set align(right)
-                    {"\\ \n".join(time)} \\
-                    #text()[{status}]
+                    {"\\ \n".join(right)}
                 ],
             )
             """
@@ -44,7 +51,7 @@ class Experience(ResumePart):
         section = f"""
         {utils.create_heading("Work Experience")}
         #grid(
-            columns: (0.2fr, 9.6fr, 0.2fr),
+            columns: (0.1fr, 9.8fr, 0.1fr),
             text()[],
             [
                 {content}
