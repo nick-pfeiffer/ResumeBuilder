@@ -1,6 +1,8 @@
 {
     "settings": {
         "margins": 1,
+        "top_margin": 1,
+        "bottom_margin": 1,
         "font_size": 11,
         "part_order": [
             "header",
@@ -29,6 +31,7 @@
             "graduation": "Required",
             "degree": "Required",
             "gpa": "",
+            "honors": [""],
             "courses": [
                  {
                     "name": "",

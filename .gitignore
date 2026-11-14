@@ -13,3 +13,7 @@ wheels/
 *.pdf
 *.typ
 dliu-config.json
+npfeiffer-config.json
+
+# macOS
+.DS_Store
