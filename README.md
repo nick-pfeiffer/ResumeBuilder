@@ -56,8 +56,14 @@ uv run resume
 typst compile resume.typ
 ```
 
-## Results
+## Example
 
-Your results should look similar to mine, attached below:
+`example-config.json` is a filled-in sample based on
+[Jake's Resume](https://github.com/jakegut/resume). To build it:
+
+```
+uv run resume --path example-config.json
+typst compile resume.typ
+```
 
 ![screenshot](img/sample.png)
